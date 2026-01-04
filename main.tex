@@ -1,0 +1,81 @@
+\documentclass[a5paper,11pt,twoside]{book}
+
+% --- CẤU HÌNH KHỔ GIẤY VÀ CĂN LỀ ---
+\usepackage[
+    a5paper,
+    inner=2.5cm,
+    outer=1.0cm, % Tôi tăng nhẹ lên 1cm để nội dung đỡ bị sát mép giấy quá khi cầm
+    top=1.5cm,   % Tăng lề trên một chút để header thoáng hơn
+    bottom=1.5cm
+]{geometry}
+
+% --- CẤU HÌNH TIẾNG VIỆT VÀ FONT CHỮ ---
+\usepackage{fontspec}
+\usepackage[vietnamese]{babel}
+
+\setmainfont{FreeSerif}
+\setsansfont{FreeSans}
+\setmonofont{FreeMono}
+
+% --- CÁC GÓI TIỆN ÍCH ---
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem} % Để tùy chỉnh list (itemize/enumerate) đẹp hơn
+
+% --- TRANG TRÍ HEADER/FOOTER ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\textbf{\thepage}}
+\fancyhead[RE]{\itshape\nouppercase{\leftmark}}
+\fancyhead[LO]{\itshape\nouppercase{\rightmark}}
+
+% --- ĐỊNH NGHĨA GIAO DIỆN MÓN ĂN (MACRO) ---
+% Cú pháp: \monan{Tên món}{Nguyên liệu}{Cách làm}
+\newcommand{\monan}[3]{
+    \section{#1} % Tên món sẽ vào Mục lục
+    \vspace{0.3cm}
+    \textbf{\large \color{brown!80!black} $\bullet$ Nguyên liệu:}
+    \begin{itemize}[leftmargin=1.5em, labelsep=0.5em]
+        #2
+    \end{itemize}
+    \vspace{0.3cm}
+    \textbf{\large \color{brown!80!black} $\bullet$ Chế biến:}
+    \begin{enumerate}[leftmargin=1.5em, labelsep=0.5em]
+        #3
+    \end{enumerate}
+    \vspace{0.5cm}
+    \hrule
+    \vspace{0.5cm}
+}
+
+% --- TRANG TRÍ TIÊU ĐỀ CHƯƠNG ---
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\color{brown!60!black}}
+  {\filleft\huge\chaptertitlename\ \thechapter}
+  {1ex}
+  {\titlerule\vspace{1ex}\filleft\Huge}
+  [\vspace{1ex}\titlerule]
+
+% --- THÔNG TIN SÁCH ---
+\title{\textbf{SỔ TAY CÔNG THỨC NẤU ĂN\\ \large (Dành cho người bận rộn)}}
+\author{Biên soạn: Gemini & User}
+\date{\today}
+
+% ================= NỘI DUNG CHÍNH =================
+\begin{document}
+
+\frontmatter
+\maketitle
+% \tableofcontents
+\mainmatter
+
+% Nhúng các file con vào (Lưu ý: tạo folder 'chapters' trước)
+\include{chapters/01_mealprep}
+\include{chapters/02_noicomdien}
+\include{chapters/03_xao_luoc}
+\include{chapters/04_canh}
+
+\end{document}
