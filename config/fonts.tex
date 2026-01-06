@@ -8,8 +8,26 @@
 \usepackage{fontspec}
 
 % --- Chọn font chữ ---
-\setmainfont{FreeSerif}   % Font chính (có chân - serif)
-\setsansfont{FreeSans}    % Font không chân (sans-serif)
+% Sử dụng Extension=.ttf để tránh lỗi font với XeLaTeX
+\setmainfont{CrimsonPro}[
+    Extension=.ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic,
+    Path=/home/kiet/.local/share/fonts/Crimson_Pro/static/
+]
+
+\setsansfont{OpenSans}[
+    Extension=.ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic,
+    Path=/home/kiet/.local/share/fonts/Open_Sans/static/
+]
+
+% Nếu không có CaskaydiaCove, dùng FreeMono làm fallback
 \setmonofont{FreeMono}    % Font đơn cách (monospace)
 
 % --- Điều chỉnh kích thước font ---
