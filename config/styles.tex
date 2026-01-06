@@ -49,16 +49,22 @@
     \end{enumerate}
     \vspace{0.3cm}
 
-    % Đường phân cách giữa các món
-    \hrule
-    \vspace{0.3cm}
+    % Đường phân cách giữa các món (kiểu đường chấm + trái tim)
+    \vspace{0.4cm}
+    \begin{center}
+        \textcolor{brown!60!black}{
+            \dotfill \quad $\heartsuit$ \quad \dotfill
+        }
+    \end{center}
+    \vspace{0.4cm}
+
 }
 
 % --- TRANG TRÍ TIÊU ĐỀ CHƯƠNG ---
 % Tùy chỉnh giao diện cho \chapter
 \titleformat{\chapter}[display]
   {\normalfont\bfseries\color{brown!60!black}}
-  {\filleft\huge\chaptertitlename\ \thechapter}
-  {1ex}
-  {\titlerule\vspace{1ex}\filleft\Huge}
-  [\vspace{1ex}\titlerule]
+  {\filleft\Large\chaptertitlename\ \thechapter}
+  {2ex}
+  {\filleft\huge\MakeUppercase}
+  []
