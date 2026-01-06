@@ -4,16 +4,18 @@
 % File này chứa các macro tùy chỉnh và định nghĩa style cho dự án
 
 % --- ĐỊNH NGHĨA GIAO DIỆN MÓN ĂN (MACRO) ---
-% Cú pháp: \monan{Tên món}{Nguyên liệu}{Sơ chế}{Chế biến}
+% Cú pháp: \monan{Tên món}{Độ khó}{Thời gian}{Nguyên liệu}{Sơ chế}{Chế biến}
 %
 % Tham số:
 %   #1 - Tên món (sẽ hiển thị trong mục lục)
-%   #2 - Danh sách nguyên liệu (dùng \item cho mỗi nguyên liệu)
-%   #3 - Các bước sơ chế (để trống nếu không có, dùng \item cho mỗi bước)
-%   #4 - Các bước chế biến (dùng \item cho mỗi bước)
+%   #2 - Độ khó (1=dễ, 2=trung bình, 3=khó)
+%   #3 - Thời gian (ví dụ: "15 phút", "30 phút")
+%   #4 - Danh sách nguyên liệu (dùng \item cho mỗi nguyên liệu)
+%   #5 - Các bước sơ chế (để trống nếu không có, dùng \item cho mỗi bước)
+%   #6 - Các bước chế biến (dùng \item cho mỗi bước)
 %
 % Ví dụ:
-%   \monan{Thịt kho tàu}{
+%   \monan{Thịt kho tàu}{2}{45 phút}{
 %       \item 500g thịt ba chỉ
 %       \item 2 quả trứng
 %   }{
@@ -21,24 +23,38 @@
 %   }{
 %       \item Kho thịt với nước dừa
 %   }
-\newcommand{\monan}[4]{
+\newcommand{\monan}[6]{
     \section{#1} % Tên món sẽ vào Mục lục
     \index{#1} % Thêm món ăn vào chỉ mục
     \vspace{0.2cm}
 
+    % Hiển thị độ khó và thời gian
+    \noindent
+    \textcolor{brown!70!black}{
+        \textbf{Độ khó:}
+        \ifcase#2
+        \or $\star$ {\small\textit{(Dễ)}}
+        \or $\star\star$ {\small\textit{(Trung bình)}}
+        \or $\star\star\star$ {\small\textit{(Khó)}}
+        \fi
+        \quad $\bullet$ \quad
+        \textbf{Thời gian:} #3
+    }
+    \vspace{0.3cm}
+
     % Phần nguyên liệu
     \textbf{\normalsize \color{brown!80!black} $\bullet$ Nguyên liệu:}
     \begin{itemize}[leftmargin=1.2em, labelsep=0.3em, itemsep=0pt, parsep=0pt]
-        #2
+        #4
     \end{itemize}
     \vspace{0.2cm}
 
     % Phần sơ chế (chỉ hiển thị nếu không rỗng)
-    \ifx&#3&%
+    \ifx&#5&%
     \else
         \textbf{\normalsize \color{brown!80!black} $\bullet$ Sơ chế:}
         \begin{enumerate}[leftmargin=1.2em, labelsep=0.3em, itemsep=0pt, parsep=0pt]
-            #3
+            #5
         \end{enumerate}
         \vspace{0.2cm}
     \fi
@@ -46,7 +62,7 @@
     % Phần chế biến
     \textbf{\normalsize \color{brown!80!black} $\bullet$ Chế biến:}
     \begin{enumerate}[leftmargin=1.2em, labelsep=0.3em, itemsep=0pt, parsep=0pt]
-        #4
+        #6
     \end{enumerate}
     \vspace{0.4cm}
 
