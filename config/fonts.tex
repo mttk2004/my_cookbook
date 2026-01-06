@@ -1,0 +1,26 @@
+% ================================================================
+% CẤU HÌNH TIẾNG VIỆT VÀ FONT CHỮ (FONTS & LANGUAGE)
+% ================================================================
+% File này chứa cấu hình về font chữ và ngôn ngữ tiếng Việt
+
+% --- Cấu hình ngôn ngữ ---
+\usepackage[vietnamese]{babel}
+\usepackage{fontspec}
+
+% --- Chọn font chữ ---
+\setmainfont{FreeSerif}   % Font chính (có chân - serif)
+\setsansfont{FreeSans}    % Font không chân (sans-serif)
+\setmonofont{FreeMono}    % Font đơn cách (monospace)
+
+% --- Điều chỉnh kích thước font ---
+% Giảm 20% so với kích thước mặc định để phù hợp với khổ A5
+\usepackage{anyfontsize}
+
+\renewcommand{\normalsize}{\fontsize{9}{10.8}\selectfont}
+\renewcommand{\small}{\fontsize{8}{9.6}\selectfont}
+\renewcommand{\footnotesize}{\fontsize{7}{8.4}\selectfont}
+\renewcommand{\large}{\fontsize{10}{12}\selectfont}
+\renewcommand{\Large}{\fontsize{11}{13.2}\selectfont}
+\renewcommand{\LARGE}{\fontsize{12}{14.4}\selectfont}
+\renewcommand{\huge}{\fontsize{14}{16.8}\selectfont}
+\renewcommand{\Huge}{\fontsize{16}{19.2}\selectfont}

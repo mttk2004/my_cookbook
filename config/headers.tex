@@ -1,0 +1,15 @@
+% ================================================================
+% TRANG TRÍ HEADER/FOOTER (HEADERS & FOOTERS)
+% ================================================================
+% File này chứa cấu hình cho phần đầu trang và chân trang
+
+\pagestyle{fancy}
+\fancyhf{}  % Xóa tất cả header/footer mặc định
+
+% Điều chỉnh chiều cao header để tránh warning
+\setlength{\headheight}{12.36003pt}
+
+% Thiết lập header
+\fancyhead[LE,RO]{\textbf{\thepage}}                    % Số trang (trái-chẵn, phải-lẻ)
+\fancyhead[RE]{\itshape\nouppercase{\leftmark}}        % Tên chapter (phải-chẵn)
+\fancyhead[LO]{\itshape\nouppercase{\rightmark}}       % Tên section (trái-lẻ)

@@ -1,0 +1,65 @@
+% ================================================================
+% TRANG BÌA TỰ THIẾT KẾ (CUSTOM TITLE PAGE)
+% ================================================================
+% File này chứa định nghĩa trang bìa cho sổ tay nấu ăn
+
+\newcommand{\makecustomtitle}{
+    \begin{titlepage}
+        % Vẽ viền trang trí bằng TikZ
+        \begin{tikzpicture}[remember picture,overlay]
+            % Viền ngoài (nét đậm)
+            \draw[line width=2pt,brown!60!black]
+                ([xshift=1cm,yshift=-1cm]current page.north west)
+                rectangle
+                ([xshift=-1cm,yshift=1cm]current page.south east);
+
+            % Viền trong (nét mỏng)
+            \draw[line width=0.5pt,brown!40]
+                ([xshift=1.2cm,yshift=-1.2cm]current page.north west)
+                rectangle
+                ([xshift=-1.2cm,yshift=1.2cm]current page.south east);
+        \end{tikzpicture}
+
+        \vspace*{2cm}
+        \begin{center}
+            % Icon/Hình trang trí phía trên
+            {\Large \textcolor{brown!70!black}{$\spadesuit$ $\clubsuit$ $\spadesuit$}}
+
+            \vspace{0.8cm}
+
+            % Tiêu đề chính
+            {\fontsize{20}{24}\selectfont\bfseries\textcolor{brown!80!black}{
+                SỔ TAY\\[0.4cm]
+                CÔNG THỨC\\[0.4cm]
+                NẤU ĂN
+            }}
+
+            \vspace{0.6cm}
+
+            % Phụ đề
+            {\large\itshape\textcolor{brown!60!black}{
+                Dành cho người bận rộn
+            }}
+
+            \vspace{0.8cm}
+
+            % Icon/Hình trang trí giữa
+            {\normalsize \textcolor{brown!70!black}{$\diamondsuit$ $\heartsuit$ $\diamondsuit$}}
+
+            \vfill
+
+            % Thông tin tác giả
+            {\normalsize\textcolor{brown!70!black}{
+                Biên soạn bởi\\[0.2cm]
+                \textbf{Mai Tran Tuan Kiet}
+            }}
+
+            \vspace{0.4cm}
+
+            % Ngày tháng
+            {\footnotesize\textcolor{brown!50!black}{\today}}
+
+            \vspace{1cm}
+        \end{center}
+    \end{titlepage}
+}

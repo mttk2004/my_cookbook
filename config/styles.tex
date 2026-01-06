@@ -1,0 +1,64 @@
+% ================================================================
+% ĐỊNH NGHĨA MACRO VÀ STYLE (CUSTOM MACROS & STYLES)
+% ================================================================
+% File này chứa các macro tùy chỉnh và định nghĩa style cho dự án
+
+% --- ĐỊNH NGHĨA GIAO DIỆN MÓN ĂN (MACRO) ---
+% Cú pháp: \monan{Tên món}{Nguyên liệu}{Sơ chế}{Chế biến}
+%
+% Tham số:
+%   #1 - Tên món (sẽ hiển thị trong mục lục)
+%   #2 - Danh sách nguyên liệu (dùng \item cho mỗi nguyên liệu)
+%   #3 - Các bước sơ chế (để trống nếu không có, dùng \item cho mỗi bước)
+%   #4 - Các bước chế biến (dùng \item cho mỗi bước)
+%
+% Ví dụ:
+%   \monan{Thịt kho tàu}{
+%       \item 500g thịt ba chỉ
+%       \item 2 quả trứng
+%   }{
+%       \item Luộc thịt sơ qua
+%   }{
+%       \item Kho thịt với nước dừa
+%   }
+\newcommand{\monan}[4]{
+    \section{#1} % Tên món sẽ vào Mục lục
+    \vspace{0.2cm}
+
+    % Phần nguyên liệu
+    \textbf{\normalsize \color{brown!80!black} $\bullet$ Nguyên liệu:}
+    \begin{itemize}[leftmargin=1.2em, labelsep=0.3em, itemsep=0pt, parsep=0pt]
+        #2
+    \end{itemize}
+    \vspace{0.2cm}
+
+    % Phần sơ chế (chỉ hiển thị nếu không rỗng)
+    \ifx&#3&%
+    \else
+        \textbf{\normalsize \color{brown!80!black} $\bullet$ Sơ chế:}
+        \begin{enumerate}[leftmargin=1.2em, labelsep=0.3em, itemsep=0pt, parsep=0pt]
+            #3
+        \end{enumerate}
+        \vspace{0.2cm}
+    \fi
+
+    % Phần chế biến
+    \textbf{\normalsize \color{brown!80!black} $\bullet$ Chế biến:}
+    \begin{enumerate}[leftmargin=1.2em, labelsep=0.3em, itemsep=0pt, parsep=0pt]
+        #4
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    % Đường phân cách giữa các món
+    \hrule
+    \vspace{0.3cm}
+}
+
+% --- TRANG TRÍ TIÊU ĐỀ CHƯƠNG ---
+% Tùy chỉnh giao diện cho \chapter
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\color{brown!60!black}}
+  {\filleft\huge\chaptertitlename\ \thechapter}
+  {1ex}
+  {\titlerule\vspace{1ex}\filleft\Huge}
+  [\vspace{1ex}\titlerule]
