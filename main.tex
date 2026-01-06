@@ -24,6 +24,9 @@
 % --- Trang bìa tự thiết kế ---
 \input{frontmatter/titlepage.tex}
 
+% --- Khởi tạo chỉ mục ---
+\makeindex[columns=2, title=Chỉ Mục Món Ăn, intoc]
+
 % ================================================================
 % THÔNG TIN SÁCH
 % ================================================================
@@ -52,5 +55,11 @@
 \include{chapters/05_mon_luoc_ham}
 \include{chapters/06_mon_trung}
 \include{chapters/07_mon_phu}
+
+% --- PHẦN PHỤ LỤC (Back Matter) ---
+\backmatter
+
+% In chỉ mục món ăn
+\printindex
 
 \end{document}

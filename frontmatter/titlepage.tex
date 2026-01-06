@@ -5,6 +5,15 @@
 
 \newcommand{\makecustomtitle}{
     \begin{titlepage}
+        % Reset margins để trang bìa đối xứng (không bị ảnh hưởng mirrored margins)
+        \newgeometry{
+            a5paper,
+            left=1.5cm,
+            right=1.5cm,
+            top=1cm,
+            bottom=1.5cm
+        }
+
         % Vẽ background và trang trí bằng TikZ
         \begin{tikzpicture}[remember picture,overlay]
             % Background gradient nhẹ
@@ -144,5 +153,13 @@
 
             \vspace{1cm}
         \end{center}
+
+        % Khôi phục lại margins ban đầu sau trang bìa
+        \restoregeometry
     \end{titlepage}
+
+    % Thêm trang trống sau trang bìa
+    \newpage
+    \thispagestyle{empty}
+    \mbox{}
 }
