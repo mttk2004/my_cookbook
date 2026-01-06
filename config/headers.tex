@@ -6,10 +6,25 @@
 \pagestyle{fancy}
 \fancyhf{}  % Xóa tất cả header/footer mặc định
 
-% Điều chỉnh chiều cao header để tránh warning
-\setlength{\headheight}{12.36003pt}
+% Bỏ header line (đường kẻ trên header)
+\renewcommand{\headrulewidth}{0pt}
 
-% Thiết lập header
-\fancyhead[LE,RO]{\small\textbf{\thepage}}                    % Số trang (trái-chẵn, phải-lẻ)
-\fancyhead[RE]{\small\itshape\nouppercase{\leftmark}}        % Tên chapter (phải-chẵn)
-\fancyhead[LO]{\small\itshape\nouppercase{\rightmark}}       % Tên section (trái-lẻ)
+% Thêm đường ngăn cách tinh tế cho footer
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{%
+  \color{brown!40}\leaders\hrule height \footrulewidth\hfill}}
+
+% Thiết lập footer
+\fancyfoot[LE,RO]{\small\textbf{\thepage}}                    % Số trang (trái-chẵn, phải-lẻ)
+\fancyfoot[RE]{\small\itshape\nouppercase{\leftmark}}        % Tên chapter (phải-chẵn)
+\fancyfoot[LO]{\small\itshape\nouppercase{\rightmark}}       % Tên section (trái-lẻ)
+
+% Style cho trang đầu chương (plain style)
+\fancypagestyle{plain}{
+  \fancyhf{}  % Xóa tất cả
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+  \renewcommand{\footrule}{\hbox to\headwidth{%
+    \color{brown!40}\leaders\hrule height \footrulewidth\hfill}}
+  \fancyfoot[C]{\small\textbf{\thepage}}  % Chỉ có số trang ở giữa
+}
