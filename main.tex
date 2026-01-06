@@ -1,11 +1,11 @@
-\documentclass[a5paper,11pt,twoside]{book}
+\documentclass[a5paper,10pt,twoside]{book}
 
 % --- CẤU HÌNH KHỔ GIẤY VÀ CĂN LỀ ---
 \usepackage[
     a5paper,
-    inner=2.5cm,
-    outer=1.0cm, % Tôi tăng nhẹ lên 1cm để nội dung đỡ bị sát mép giấy quá khi cầm
-    top=1.5cm,   % Tăng lề trên một chút để header thoáng hơn
+    inner=2cm,
+    outer=0.5cm,
+    top=1.5cm,
     bottom=1.5cm
 ]{geometry}
 
@@ -17,6 +17,17 @@
 \setsansfont{FreeSans}
 \setmonofont{FreeMono}
 
+% Điều chỉnh font size cơ bản xuống 20%
+\usepackage{anyfontsize}
+\renewcommand{\normalsize}{\fontsize{9}{10.8}\selectfont}
+\renewcommand{\small}{\fontsize{8}{9.6}\selectfont}
+\renewcommand{\footnotesize}{\fontsize{7}{8.4}\selectfont}
+\renewcommand{\large}{\fontsize{10}{12}\selectfont}
+\renewcommand{\Large}{\fontsize{11}{13.2}\selectfont}
+\renewcommand{\LARGE}{\fontsize{12}{14.4}\selectfont}
+\renewcommand{\huge}{\fontsize{14}{16.8}\selectfont}
+\renewcommand{\Huge}{\fontsize{16}{19.2}\selectfont}
+
 % --- CÁC GÓI TIỆN ÍCH ---
 \usepackage{graphicx}
 \usepackage{xcolor}
@@ -24,6 +35,7 @@
 \usepackage{fancyhdr}
 \usepackage[hidelinks]{hyperref}
 \usepackage{enumitem} % Để tùy chỉnh list (itemize/enumerate) đẹp hơn
+\usepackage{tikz} % Để trang trí trang bìa
 
 % --- TRANG TRÍ HEADER/FOOTER ---
 \pagestyle{fancy}
@@ -33,22 +45,31 @@
 \fancyhead[LO]{\itshape\nouppercase{\rightmark}}
 
 % --- ĐỊNH NGHĨA GIAO DIỆN MÓN ĂN (MACRO) ---
-% Cú pháp: \monan{Tên món}{Nguyên liệu}{Cách làm}
-\newcommand{\monan}[3]{
+% Cú pháp: \monan{Tên món}{Nguyên liệu}{Sơ chế}{Chế biến}
+\newcommand{\monan}[4]{
     \section{#1} % Tên món sẽ vào Mục lục
-    \vspace{0.3cm}
-    \textbf{\large \color{brown!80!black} $\bullet$ Nguyên liệu:}
-    \begin{itemize}[leftmargin=1.5em, labelsep=0.5em]
+    \vspace{0.2cm}
+    \textbf{\normalsize \color{brown!80!black} $\bullet$ Nguyên liệu:}
+    \begin{itemize}[leftmargin=1.2em, labelsep=0.3em, itemsep=0pt, parsep=0pt]
         #2
     \end{itemize}
-    \vspace{0.3cm}
-    \textbf{\large \color{brown!80!black} $\bullet$ Chế biến:}
-    \begin{enumerate}[leftmargin=1.5em, labelsep=0.5em]
-        #3
+    \vspace{0.2cm}
+    % Chỉ hiển thị phần Sơ chế nếu không rỗng
+    \ifx&#3&%
+    \else
+        \textbf{\normalsize \color{brown!80!black} $\bullet$ Sơ chế:}
+        \begin{enumerate}[leftmargin=1.2em, labelsep=0.3em, itemsep=0pt, parsep=0pt]
+            #3
+        \end{enumerate}
+        \vspace{0.2cm}
+    \fi
+    \textbf{\normalsize \color{brown!80!black} $\bullet$ Chế biến:}
+    \begin{enumerate}[leftmargin=1.2em, labelsep=0.3em, itemsep=0pt, parsep=0pt]
+        #4
     \end{enumerate}
-    \vspace{0.5cm}
+    \vspace{0.3cm}
     \hrule
-    \vspace{0.5cm}
+    \vspace{0.3cm}
 }
 
 % --- TRANG TRÍ TIÊU ĐỀ CHƯƠNG ---
@@ -60,22 +81,83 @@
   [\vspace{1ex}\titlerule]
 
 % --- THÔNG TIN SÁCH ---
-\title{\textbf{SỔ TAY CÔNG THỨC NẤU ĂN\\ \large (Dành cho người bận rộn)}}
-\author{Biên soạn: Gemini & User}
-\date{\today}
+\title{}
+\author{}
+\date{}
+
+% --- TRANG BÌA TỰ THIẾT KẾ ---
+\newcommand{\makecustomtitle}{
+    \begin{titlepage}
+        \begin{tikzpicture}[remember picture,overlay]
+            % Viền trang trí
+            \draw[line width=2pt,brown!60!black]
+                ([xshift=1cm,yshift=-1cm]current page.north west)
+                rectangle
+                ([xshift=-1cm,yshift=1cm]current page.south east);
+            \draw[line width=0.5pt,brown!40]
+                ([xshift=1.2cm,yshift=-1.2cm]current page.north west)
+                rectangle
+                ([xshift=-1.2cm,yshift=1.2cm]current page.south east);
+        \end{tikzpicture}
+
+        \vspace*{2cm}
+        \begin{center}
+            % Icon/Hình trang trí
+            {\Large \textcolor{brown!70!black}{$\spadesuit$ $\clubsuit$ $\spadesuit$}}
+
+            \vspace{0.8cm}
+
+            % Tiêu đề chính
+            {\fontsize{20}{24}\selectfont\bfseries\textcolor{brown!80!black}{
+                SỔ TAY\\[0.4cm]
+                CÔNG THỨC\\[0.4cm]
+                NẤU ĂN
+            }}
+
+            \vspace{0.6cm}
+
+            % Phụ đề
+            {\large\itshape\textcolor{brown!60!black}{
+                Dành cho người bận rộn
+            }}
+
+            \vspace{0.8cm}
+
+            {\normalsize \textcolor{brown!70!black}{$\diamondsuit$ $\heartsuit$ $\diamondsuit$}}
+
+            \vfill
+
+            % Thông tin tác giả
+            {\normalsize\textcolor{brown!70!black}{
+                Biên soạn bởi\\[0.2cm]
+                \textbf{Mai Tran Tuan Kiet}
+            }}
+
+            \vspace{0.4cm}
+
+            % Ngày tháng
+            {\footnotesize\textcolor{brown!50!black}{\today}}
+
+            \vspace{1cm}
+        \end{center}
+    \end{titlepage}
+}
 
 % ================= NỘI DUNG CHÍNH =================
 \begin{document}
 
 \frontmatter
-\maketitle
-% \tableofcontents
+\makecustomtitle
+\tableofcontents
 \mainmatter
 
-% Nhúng các file con vào (Lưu ý: tạo folder 'chapters' trước)
-\include{chapters/01_mealprep}
-\include{chapters/02_noicomdien}
-\include{chapters/03_xao_luoc}
-\include{chapters/04_canh}
+% Nhúng các file con vào
+\include{chapters/01_uop_thit}
+\include{chapters/02_mon_mi_bun}
+\include{chapters/03_mon_xao}
+\include{chapters/04_mon_nuong}
+\include{chapters/05_mon_luoc_ham}
+\include{chapters/06_mon_trung}
+\include{chapters/07_mon_phu}
 
 \end{document}
