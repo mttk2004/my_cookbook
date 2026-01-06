@@ -61,9 +61,17 @@
 
 % --- TRANG TRÍ TIÊU ĐỀ CHƯƠNG ---
 % Tùy chỉnh giao diện cho \chapter
+% Căn phải cho trang lẻ, căn trái cho trang chẵn
 \titleformat{\chapter}[display]
   {\normalfont\bfseries\color{brown!60!black}}
-  {\filleft\Large\chaptertitlename\ \thechapter}
-  {2ex}
-  {\filleft\huge\MakeUppercase}
-  []
+  {\ifodd\value{page}\filleft\else\filright\fi\Large\chaptertitlename\ \thechapter}
+  {1ex}
+  {\ifodd\value{page}\filleft\else\filright\fi\huge\MakeUppercase}
+  [\vspace{-1ex}]
+
+% Điều chỉnh khoảng cách trên và dưới của chapter
+% \titlespacing{command}{left}{before-sep}{after-sep}[right-sep]
+\titlespacing{\chapter}
+  {0pt}      % left margin
+  {0pt}      % khoảng cách trước (bỏ khoảng trống trên)
+  {3ex}      % khoảng cách sau (tăng khoảng trống dưới một chút)
