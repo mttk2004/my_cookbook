@@ -5,59 +5,142 @@
 
 \newcommand{\makecustomtitle}{
     \begin{titlepage}
-        % Vẽ viền trang trí bằng TikZ
+        % Vẽ background và trang trí bằng TikZ
         \begin{tikzpicture}[remember picture,overlay]
-            % Viền ngoài (nét đậm)
-            \draw[line width=2pt,brown!60!black]
+            % Background gradient nhẹ
+            \fill[brown!3] (current page.south west) rectangle (current page.north east);
+
+            % Viền ngoài với góc bo tròn
+            \draw[line width=3pt,brown!70!black,rounded corners=8pt]
+                ([xshift=0.8cm,yshift=-0.8cm]current page.north west)
+                rectangle
+                ([xshift=-0.8cm,yshift=0.8cm]current page.south east);
+
+            % Viền trong
+            \draw[line width=1.5pt,brown!50!black,rounded corners=6pt]
                 ([xshift=1cm,yshift=-1cm]current page.north west)
                 rectangle
                 ([xshift=-1cm,yshift=1cm]current page.south east);
 
-            % Viền trong (nét mỏng)
-            \draw[line width=0.5pt,brown!40]
-                ([xshift=1.2cm,yshift=-1.2cm]current page.north west)
+            % Viền trang trí mỏng nhất
+            \draw[line width=0.5pt,brown!30,rounded corners=5pt]
+                ([xshift=1.15cm,yshift=-1.15cm]current page.north west)
                 rectangle
-                ([xshift=-1.2cm,yshift=1.2cm]current page.south east);
+                ([xshift=-1.15cm,yshift=1.15cm]current page.south east);
+
+            % Góc trang trí - góc trên trái
+            \draw[line width=2pt,brown!60!black]
+                ([xshift=1.5cm,yshift=-1.5cm]current page.north west) --
+                ([xshift=2.5cm,yshift=-1.5cm]current page.north west)
+                ([xshift=1.5cm,yshift=-1.5cm]current page.north west) --
+                ([xshift=1.5cm,yshift=-2.5cm]current page.north west);
+
+            % Góc trang trí - góc trên phải
+            \draw[line width=2pt,brown!60!black]
+                ([xshift=-1.5cm,yshift=-1.5cm]current page.north east) --
+                ([xshift=-2.5cm,yshift=-1.5cm]current page.north east)
+                ([xshift=-1.5cm,yshift=-1.5cm]current page.north east) --
+                ([xshift=-1.5cm,yshift=-2.5cm]current page.north east);
+
+            % Góc trang trí - góc dưới trái
+            \draw[line width=2pt,brown!60!black]
+                ([xshift=1.5cm,yshift=1.5cm]current page.south west) --
+                ([xshift=2.5cm,yshift=1.5cm]current page.south west)
+                ([xshift=1.5cm,yshift=1.5cm]current page.south west) --
+                ([xshift=1.5cm,yshift=2.5cm]current page.south west);
+
+            % Góc trang trí - góc dưới phải
+            \draw[line width=2pt,brown!60!black]
+                ([xshift=-1.5cm,yshift=1.5cm]current page.south east) --
+                ([xshift=-2.5cm,yshift=1.5cm]current page.south east)
+                ([xshift=-1.5cm,yshift=1.5cm]current page.south east) --
+                ([xshift=-1.5cm,yshift=2.5cm]current page.south east);
         \end{tikzpicture}
 
-        \vspace*{2cm}
+        \vspace*{1.5cm}
         \begin{center}
-            % Icon/Hình trang trí phía trên
-            {\Large \textcolor{brown!70!black}{$\spadesuit$ $\clubsuit$ $\spadesuit$}}
+            % Icon ẩm thực phía trên (dao - nĩa - thìa)
+            {\fontsize{24}{28}\selectfont\textcolor{brown!70!black}{
+                \raisebox{-0.1em}{🍴} \quad {\Large $\star$} \quad \raisebox{-0.1em}{🍴}
+            }}
 
-            \vspace{0.8cm}
+            \vspace{1.2cm}
 
-            % Tiêu đề chính
-            {\fontsize{20}{24}\selectfont\bfseries\textcolor{brown!80!black}{
-                SỔ TAY\\[0.4cm]
-                CÔNG THỨC\\[0.4cm]
+            % Tiêu đề chính - Typography phân cấp
+            {\fontsize{32}{38}\selectfont\bfseries\textcolor{brown!85!black}{
+                SỔ TAY
+            }}
+
+            \vspace{0.3cm}
+
+            {\fontsize{36}{42}\selectfont\bfseries\textcolor{brown!80!black}{
+                CÔNG THỨC
+            }}
+
+            \vspace{0.3cm}
+
+            {\fontsize{32}{38}\selectfont\bfseries\textcolor{brown!85!black}{
                 NẤU ĂN
             }}
 
-            \vspace{0.6cm}
+            \vspace{0.8cm}
 
-            % Phụ đề
-            {\large\itshape\textcolor{brown!60!black}{
-                Dành cho người bận rộn
-            }}
+            % Đường kẻ trang trí
+            \textcolor{brown!50}{
+                \rule{0.25\textwidth}{0.5pt}
+                \quad {\small $\diamondsuit$} \quad
+                \rule{0.25\textwidth}{0.5pt}
+            }
 
             \vspace{0.8cm}
 
-            % Icon/Hình trang trí giữa
-            {\normalsize \textcolor{brown!70!black}{$\diamondsuit$ $\heartsuit$ $\diamondsuit$}}
+            % Phụ đề với font chữ nghiêng
+            {\fontsize{14}{18}\selectfont\itshape\textcolor{brown!65!black}{
+                Dành cho người bận rộn\\[0.3cm]
+                Nhanh - Gọn - Ngon
+            }}
+
+            \vspace{1cm}
+
+            % Pattern trang trí giữa
+            {\small\textcolor{brown!40}{
+                $\ast$ \quad $\cdot$ \quad $\ast$ \quad $\cdot$ \quad $\ast$ \quad $\cdot$ \quad $\ast$ \quad $\cdot$ \quad $\ast$
+            }}
 
             \vfill
 
-            % Thông tin tác giả
-            {\normalsize\textcolor{brown!70!black}{
-                Biên soạn bởi\\[0.2cm]
-                \textbf{Mai Tran Tuan Kiet}
+            % Box thông tin tác giả
+            \begin{tikzpicture}
+                \node[
+                    rectangle,
+                    draw=brown!50!black,
+                    line width=1pt,
+                    rounded corners=3pt,
+                    fill=brown!5,
+                    minimum width=7cm,
+                    minimum height=2cm
+                ] {
+                    \begin{minipage}{6.5cm}
+                        \centering
+                        {\small\textcolor{brown!60!black}{Biên soạn bởi}}\\[0.3cm]
+                        {\large\bfseries\textcolor{brown!80!black}{Mai Tran Tuan Kiet}}
+                    \end{minipage}
+                };
+            \end{tikzpicture}
+
+            \vspace{0.8cm}
+
+            % Ngày tháng với icon
+            {\footnotesize\textcolor{brown!50!black}{
+                {\small $\bullet$} \quad \today \quad {\small $\bullet$}
             }}
 
-            \vspace{0.4cm}
+            \vspace{0.3cm}
 
-            % Ngày tháng
-            {\footnotesize\textcolor{brown!50!black}{\today}}
+            % Tag line cuối
+            {\scriptsize\itshape\textcolor{brown!40}{
+                "Nấu ăn là nghệ thuật, chia sẻ là hạnh phúc"
+            }}
 
             \vspace{1cm}
         \end{center}
