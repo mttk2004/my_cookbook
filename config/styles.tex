@@ -3,6 +3,11 @@
 % ================================================================
 % File này chứa các macro tùy chỉnh và định nghĩa style cho dự án
 
+% --- Reset section counter về 0 mỗi khi bắt đầu chapter mới ---
+\makeatletter
+\@addtoreset{section}{chapter}
+\makeatother
+
 % --- ĐỊNH NGHĨA GIAO DIỆN MÓN ĂN (MACRO) ---
 % Cú pháp: \monan{Tên món}{Độ khó}{Thời gian}{Nguyên liệu}{Sơ chế}{Chế biến}
 %
@@ -24,12 +29,14 @@
 %       \item Kho thịt với nước dừa
 %   }
 \newcommand{\monan}[6]{
-    \section{#1} % Tên món sẽ vào Mục lục
-    \index{#1} % Thêm món ăn vào chỉ mục
-    \vspace{0.2cm}
-
-    % Hiển thị độ khó và thời gian
+    \refstepcounter{section}
     \noindent
+    {\Large\bfseries\color{brown!80!black}\thesection. #1}
+    \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}
+    \index{#1} % Thêm món ăn vào chỉ mục
+
+    % Hiển thị độ khó và thời gian ngay sau tên món
+    \hfill
     \textcolor{brown!70!black}{
         \textbf{Độ khó:}
         \ifcase#2
@@ -40,7 +47,8 @@
         \quad $\bullet$ \quad
         \textbf{Thời gian:} #3
     }
-    \vspace{0.3cm}
+
+    \vspace{0.5cm}
 
     % Phần nguyên liệu
     \textbf{\normalsize \color{brown!80!black} $\bullet$ Nguyên liệu:}
