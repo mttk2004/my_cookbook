@@ -34,21 +34,20 @@
 
     % Tiêu đề món ăn và thông tin độ khó/thời gian trên cùng một dòng
     \noindent
-    \begin{minipage}[t]{0.55\textwidth}
+    \begin{minipage}[t]{0.7\textwidth}
         {\Large\bfseries\color{brown!80!black}\thedishcounter. #1}
     \end{minipage}%
     \hfill
-    \begin{minipage}[t]{0.42\textwidth}
+    \begin{minipage}[t]{0.27\textwidth}
         \raggedleft
         \textcolor{brown!70!black}{
-            \textbf{Độ khó:}
             \ifcase#2
-            \or $\star$ {\small\textit{(Dễ)}}
-            \or $\star\star$ {\small\textit{(TB)}}
-            \or $\star\star\star$ {\small\textit{(Khó)}}
+            \or $\star$
+            \or $\star\star$
+            \or $\star\star\star$
             \fi
             \quad $\bullet$ \quad
-            \textbf{Thời gian:} #3
+            #3
         }
     \end{minipage}
 
