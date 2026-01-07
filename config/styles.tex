@@ -3,10 +3,9 @@
 % ================================================================
 % File này chứa các macro tùy chỉnh và định nghĩa style cho dự án
 
-% --- Reset section counter về 0 mỗi khi bắt đầu chapter mới ---
-\makeatletter
-\@addtoreset{section}{chapter}
-\makeatother
+% --- Tạo counter riêng cho món ăn ---
+\newcounter{dishcounter}
+\counterwithin*{dishcounter}{chapter}
 
 % --- ĐỊNH NGHĨA GIAO DIỆN MÓN ĂN (MACRO) ---
 % Cú pháp: \monan{Tên món}{Độ khó}{Thời gian}{Nguyên liệu}{Sơ chế}{Chế biến}
@@ -29,26 +28,31 @@
 %       \item Kho thịt với nước dừa
 %   }
 \newcommand{\monan}[6]{
-    \refstepcounter{section}
-    \noindent
-    {\Large\bfseries\color{brown!80!black}\thesection. #1}
-    \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}
+    \refstepcounter{dishcounter}
+    \addcontentsline{toc}{section}{\protect\numberline{\thedishcounter}#1}
     \index{#1} % Thêm món ăn vào chỉ mục
 
-    % Hiển thị độ khó và thời gian ngay sau tên món
+    % Tiêu đề món ăn và thông tin độ khó/thời gian trên cùng một dòng
+    \noindent
+    \begin{minipage}[t]{0.55\textwidth}
+        {\Large\bfseries\color{brown!80!black}\thedishcounter. #1}
+    \end{minipage}%
     \hfill
-    \textcolor{brown!70!black}{
-        \textbf{Độ khó:}
-        \ifcase#2
-        \or $\star$ {\small\textit{(Dễ)}}
-        \or $\star\star$ {\small\textit{(Trung bình)}}
-        \or $\star\star\star$ {\small\textit{(Khó)}}
-        \fi
-        \quad $\bullet$ \quad
-        \textbf{Thời gian:} #3
-    }
+    \begin{minipage}[t]{0.42\textwidth}
+        \raggedleft
+        \textcolor{brown!70!black}{
+            \textbf{Độ khó:}
+            \ifcase#2
+            \or $\star$ {\small\textit{(Dễ)}}
+            \or $\star\star$ {\small\textit{(TB)}}
+            \or $\star\star\star$ {\small\textit{(Khó)}}
+            \fi
+            \quad $\bullet$ \quad
+            \textbf{Thời gian:} #3
+        }
+    \end{minipage}
 
-    \vspace{0.5cm}
+    \vspace{0.4cm}
 
     % Phần nguyên liệu
     \textbf{\normalsize \color{brown!80!black} $\bullet$ Nguyên liệu:}
